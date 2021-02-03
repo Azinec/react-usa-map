@@ -28,7 +28,9 @@ class USAMap extends React.Component {
     let paths = [];
     let dataStates = data();
     for (let stateKey in dataStates) {
-      const path = <USAState key={stateKey} stateName={dataStates[stateKey].name} dimensions={dataStates[stateKey]["dimensions"]} state={stateKey} fill={this.fillStateColor(stateKey)} onClickState={this.stateClickHandler(stateKey)} />
+      const customStateName = this.props.customize[state].stateName;
+      const stateName = customStateName || dataStates[stateKey].name;
+      const path = <USAState key={stateKey} stateName={stateName} dimensions={dataStates[stateKey]["dimensions"]} state={stateKey} fill={this.fillStateColor(stateKey)} onClickState={this.stateClickHandler(stateKey)} />
       paths.push(path);
     };
     return paths;
